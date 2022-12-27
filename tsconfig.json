@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "strict": true,
+        "types": [
+            "node",
+            "@wdio/mocha-framework",
+            "expect-webdriverio",
+            "webdriverio/async",
+            "@wdio/globals/types",
+        ],
+        "target": "es2019"
+    }
+}
