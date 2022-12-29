@@ -15,8 +15,9 @@ describe('Switch between modes', async () => {
         it (`Switch to ${element} mode`, async () => {
             await (await consoleMode.bottomBar).waitForDisplayed();
             await (await consoleMode.getModeButton(element)).click();
-            await browser.pause(1000);
-            expect(await browser).toHaveUrlContaining(element);
+            await browser.pause(500);
+            await expect(browser).toHaveUrlContaining(element);
+            await expect(await consoleMode.getModeButton(element)).toHaveElementClassContaining('active');
         });
     });
 });

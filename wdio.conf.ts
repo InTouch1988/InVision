@@ -33,7 +33,7 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/changeDeviceType.spec.ts'
+        './test/specs/**/hotspotColorCheck.spec.ts'
     ],
     // Patterns to exclude.
     exclude: [
