@@ -33,7 +33,7 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/hotspotColorCheck.spec.ts'
+        './test/specs/**/expandThumbnailTray.spec.ts'
     ],
     // Patterns to exclude.
     exclude: [

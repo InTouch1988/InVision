@@ -10,6 +10,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@types/node": "^18.11.18",
         "@wdio/browser-runner": "^8.0.13",
         "@wdio/cli": "^8.0.13",
         "@wdio/mocha-framework": "^8.0.13",

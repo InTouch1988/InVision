@@ -7,14 +7,14 @@ class ConsoleLocators {
     get bottomBar() {
         return $(consoleLocators.bottomBar);
     }
-    get saveHotspotBtn() {
-        return $(consoleLocators.saveHotspotBtn);
-    }
-    get hotspotMenu() {
-        return $(consoleLocators.hotspotMenu);
-    }
-    get projecrScreen() {
+    get projectScreen() {
         return $(consoleLocators.projectScreen);
+    }
+    get thumbnailTrayBtn() {
+        return $(consoleLocators.thumbnailTrayBtn);
+    }
+    get thumbnailTraySearch() {
+        return $(consoleLocators.thumbnailTraSearch);
     }
     async getModeButton(modeName: string) {
         return $(`//li[contains(@class, 'list-item ${modeName}-mode')]`);
@@ -23,9 +23,7 @@ class ConsoleLocators {
         await (await this.getModeButton(modeName)).click();
     }
     async createHotspot(startCoords: ScreenCoords, endCoords: ScreenCoords) {
-        (await this.projecrScreen).dragAndDrop(startCoords, endCoords);
-        await (await this.saveHotspotBtn).waitForDisplayed();
-        await (await this.saveHotspotBtn).click();
+        (await this.projectScreen).dragAndDrop(startCoords, endCoords);
     }
 };
 

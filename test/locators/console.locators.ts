@@ -1,9 +1,9 @@
 const consoleLocators = {
 
     bottomBar: '#bottom_bar',
-    saveHotspotBtn: '//button[@class="button" and contains(text(), "Save")]',
-    hotspotMenu: 'div.hotspot-setup',
-    projectScreen: '.projectScreen'
+    projectScreen: '.projectScreen',
+    thumbnailTrayBtn: 'a[ng-click="toggleThumbnailTray()"]',
+    thumbnailTraSearch: '#search_bar'
 }
 
 export default consoleLocators;

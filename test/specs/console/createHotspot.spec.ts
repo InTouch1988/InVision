@@ -1,9 +1,8 @@
 import loginPage from "../../pageobjects/loginPage";
-import homePage from "../../pageobjects/homePage";
 import screensOverview from "../../pageobjects/screensOverview";
 import consoleMode from '../../pageobjects/console';
 
-describe('Check color', async () => {
+describe('Creat a hotspot', async () => {
 
     before(async () => {
         await loginPage.login();
@@ -11,9 +10,8 @@ describe('Check color', async () => {
         await consoleMode.switchToMode('build');
     });
     
-    it('Check color', async () => {
-        await (await consoleMode.projecrScreen).waitForDisplayed();
+    it('Creat a hotspot', async () => {
+        await (await consoleMode.projectScreen).waitForDisplayed();
         await consoleMode.createHotspot({x: 50, y: 50}, {x: 100, y: 100});
-        await browser.pause(5000);
     });
 });
