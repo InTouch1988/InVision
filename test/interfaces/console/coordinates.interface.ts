@@ -3,4 +3,10 @@ interface ScreenCoords {
     y: number
 };
 
-export default ScreenCoords;
+interface HotspotCoords {
+    firstCoordinate: ScreenCoords,
+    secondCoordinate: ScreenCoords
+};
+
+export default HotspotCoords;
+
