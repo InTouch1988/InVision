@@ -1,4 +1,6 @@
 import hotspotModalLocators from "../locators/hotspotModal.locators";
+import consoleMode from "../pageobjects/console";
+import LinkToMenu from "../interfaces/console/linkToMenu.interface";
 
 class HotspotModal {
 
@@ -23,11 +25,14 @@ class HotspotModal {
     get linkToOptionsList() {
         return $(hotspotModalLocators.linkToOptionsList);
     }
-    get anchorBtn() {
-        return $(hotspotModalLocators.anchorBtn);
-    }
     get screenImg() {
         return $(hotspotModalLocators.screenImg);
+    }
+    get anchorPositionBtn() {
+        return $(hotspotModalLocators.anchorPositionBtn);
+    }
+    get externalUrlInput() {
+        return $(hotspotModalLocators.ExternalUrlInput);
     }
     async saveHotspot() {
         await (await this.saveHotspotBtn).click();
@@ -36,17 +41,25 @@ class HotspotModal {
         await (await this.linkToMenu).click();
         await (await this.linkToOptionsList).waitForDisplayed();
     }
-    async getLinkToOption(optionName: LinkToOptions) {
-        return $(`//li[@class="item ng-scope" and @data-search="${optionName}"]`);
+    async getLinkToOption(optionName: string) {
+        return $(`//li[@class="item ng-scope" and contains(@data-search, "${optionName}")]`);
     }
-    async selectLinkToMenuOption(optionName: LinkToOptions) {
+    async selectLinkToMenuOption(optionName: string) {
         await (await this.getLinkToOption(optionName)).click();
     }
     async setAnchorPosition() {
-        await (await this.anchorBtn).waitForClickable();
-        await (await this.anchorBtn).click();
+        await (await this.anchorPositionBtn).waitForClickable();
+        await (await this.anchorPositionBtn).click();
         await (await this.screenImg).waitForDisplayed();
         await (await this.screenImg).click();
+    }
+    async setUrlAdress(address: LinkToMenu) {
+        await (await this.externalUrlInput).waitForClickable();
+        await (await this.externalUrlInput).setValue(address.urlAddress);
+    }
+    async saveHotspotAndCheck() {
+        await this.saveHotspot();
+        await consoleMode.isHotspotCreated();
     }
 }
 

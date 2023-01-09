@@ -55,6 +55,19 @@ class ConsoleLocators {
     async isHotspotCreated() {
         await expect(await this.hotspots).toHaveLength(1);
     }
+    async checkAndDeleteHotspots() {
+        if (await this.hotspots.length > 0) {
+            await browser.pause(1000);
+            await (await this.projectScreen).waitForDisplayed();
+            await (await this.projectScreenImg).waitForDisplayed();
+            await this.selectHotspot();
+            if (await this.hotspots.length > 1) {
+                await this.deleteAllHotspots();
+            } else {
+                await this.deleteSingleHotspot();
+            };
+        };
+    }
 };
 
 export default new ConsoleLocators();

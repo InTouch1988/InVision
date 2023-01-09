@@ -10,6 +10,8 @@ describe('Create hotspots', async () => {
         firstCoordinate: {x: 50, y: 50}, 
         secondCoordinate: {x: 100, y: 100}
     };
+    const linkToOptions: string[] = ['Link Back / Close', 'Previous Screen in Series', 'Next Screen in Series'];
+    const urlAddress: string = 'google.com';
 
     before(async () => {
         await loginPage.login();
@@ -18,32 +20,28 @@ describe('Create hotspots', async () => {
     });
 
     beforeEach(async () => {
-        if (await consoleMode.hotspots.length > 0) {
-            await browser.pause(1000);
-            await (await consoleMode.projectScreen).waitForDisplayed();
-            await (await consoleMode.projectScreenImg).waitForDisplayed();
-            await consoleMode.selectHotspot();
-            if (await consoleMode.hotspots.length > 1) {
-                await consoleMode.deleteAllHotspots();
-            } else {
-                await consoleMode.deleteSingleHotspot();
-            };
-        };
+        await consoleMode.checkAndDeleteHotspots();
         await (await consoleMode.projectScreen).waitForDisplayed();
         await consoleMode.createHotspot(hotspotData);
         await hotspotModal.openLinkToMenu();
     });
-    
-    it('Create a hotspot with Next Screen in Series option', async () => {
-        await hotspotModal.selectLinkToMenuOption('Next Screen in Series');
-        await hotspotModal.saveHotspot();
-        await consoleMode.isHotspotCreated();
+
+    linkToOptions.forEach(optionName => {
+        it(`Create a hotspot with "${optionName}" option`, async () => {
+            await hotspotModal.selectLinkToMenuOption(optionName);
+            await hotspotModal.saveHotspotAndCheck();
+        });
     });
 
-    it('Create a hotspot with Another point on this screen option', async () => {
+    it('Create a hotspot with "Another point on this screen" option', async () => {
         await hotspotModal.selectLinkToMenuOption('Another point on this screen');
         await hotspotModal.setAnchorPosition();
-        await hotspotModal.saveHotspot();
-        await consoleMode.isHotspotCreated();
+        await hotspotModal.saveHotspotAndCheck();
     });
+
+    it('Create a hotspot with "External URL" option', async () => {
+        await hotspotModal.selectLinkToMenuOption('External URL');
+        await hotspotModal.setUrlAdress(urlAddress);
+        await hotspotModal.saveHotspotAndCheck();
+    })
 });
