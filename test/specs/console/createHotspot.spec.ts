@@ -43,5 +43,10 @@ describe('Create hotspots', async () => {
         await hotspotModal.selectLinkToMenuOption('External URL');
         await hotspotModal.setUrlAdress(urlAddress);
         await hotspotModal.saveHotspotAndCheck();
-    })
+    });
+    it('Create a hotspot with "Screen as Overlay" option', async () => {
+        await hotspotModal.selectLinkToMenuOption('Screen as Overlay');
+        await hotspotModal.setOverlayScreen();
+        await hotspotModal.saveHotspotAndCheck();
+    });
 });

@@ -28,6 +28,14 @@ class ConsoleLocators {
     get bulkModalDeleteBtn() {
         return $(consoleLocators.bulkModalDeleteBtn);
     }
+    async hotspotHandles() {
+        return {
+            topLeft: $('//div[@ng-show="!hotspot.designTool"][1]'),
+            topRight: $('//div[@ng-show="!hotspot.designTool"][2]'),
+            bottomLeft: $('//div[@ng-show="!hotspot.designTool"][3]'),
+            bottomRight: $('//div[@ng-show="!hotspot.designTool"][4]')
+        };
+    }
     async getModeButton(modeName: string) {
         return $(`//li[contains(@class, 'list-item ${modeName}-mode')]`);
     }

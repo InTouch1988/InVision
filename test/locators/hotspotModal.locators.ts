@@ -8,7 +8,9 @@ const hotspotModalLocators = {
     deleteBtn: '//*[@class="section actions"]//a[@class="delete"]',
     screenImg: 'img.screenImg',
     anchorPositionBtn: '//li[contains(@ng-show, "shouldShowThisOption")]//a[@class="button anchor"]',
-    ExternalUrlInput: 'input[ng-model="hotspot.metaData.url"]'
+    ExternalUrlInput: 'input[ng-model="hotspot.metaData.url"]',
+    selectOverlayMenu: '//*[@class="section overlay-options in"]//h2[text()="Select a screen"]',
+    overlayScreen: '//a[contains(@ng-click, "setTargetScreenID")]'
 }
 
 export default hotspotModalLocators;

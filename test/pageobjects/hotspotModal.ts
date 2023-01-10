@@ -34,6 +34,12 @@ class HotspotModal {
     get externalUrlInput() {
         return $(hotspotModalLocators.ExternalUrlInput);
     }
+    get selectOverlayMenu() {
+        return $(hotspotModalLocators.selectOverlayMenu);
+    }
+    get overlayScreen() {
+        return $(hotspotModalLocators.overlayScreen);
+    }
     async saveHotspot() {
         await (await this.saveHotspotBtn).click();
     }
@@ -53,9 +59,15 @@ class HotspotModal {
         await (await this.screenImg).waitForDisplayed();
         await (await this.screenImg).click();
     }
-    async setUrlAdress(address: LinkToMenu) {
+    async setUrlAdress(address: string) {
         await (await this.externalUrlInput).waitForClickable();
-        await (await this.externalUrlInput).setValue(address.urlAddress);
+        await (await this.externalUrlInput).setValue(address);
+    }
+    async setOverlayScreen() {
+        await (await this.selectOverlayMenu).waitForClickable();
+        await (await this.selectOverlayMenu).click();
+        await (await this.overlayScreen).waitForClickable();
+        await (await this.overlayScreen).click();
     }
     async saveHotspotAndCheck() {
         await this.saveHotspot();
