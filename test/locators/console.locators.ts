@@ -5,7 +5,8 @@ const consoleLocators = {
     projectScreenImg: '//img[contains(@class, "projectScreen") and contains(@src, "https")]',
     thumbnailTrayBtn: 'a[ng-click="toggleThumbnailTray()"]',
     thumbnailTraSearch: '#search_bar',
-    bulkModalDeleteBtn: '//div[@role="dialog"]//button[text()="Delete"]'
+    bulkModalDeleteBtn: '//div[@role="dialog"]//button[text()="Delete"]',
+    collaborateBtn: '//*[@data-testid="create-freehand-button"]'
 }
 
 export default consoleLocators;

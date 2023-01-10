@@ -28,7 +28,10 @@ class ConsoleLocators {
     get bulkModalDeleteBtn() {
         return $(consoleLocators.bulkModalDeleteBtn);
     }
-    async hotspotHandles() {
+    get collaborateBtn() {
+        return $(consoleLocators.collaborateBtn);
+    }
+    async gethotspotHandles() {
         return {
             topLeft: $('//div[@ng-show="!hotspot.designTool"][1]'),
             topRight: $('//div[@ng-show="!hotspot.designTool"][2]'),
@@ -38,6 +41,9 @@ class ConsoleLocators {
     }
     async getModeButton(modeName: string) {
         return $(`//li[contains(@class, 'list-item ${modeName}-mode')]`);
+    }
+    async getHotspotSize() {
+        return this.hotspots[0].getSize('height');
     }
     async switchToMode(modeName: string) {
         await (await this.getModeButton(modeName)).click();
@@ -75,6 +81,14 @@ class ConsoleLocators {
                 await this.deleteSingleHotspot();
             };
         };
+    }
+    async resizeHotspot(position: string) {
+        const handle = await (await this.gethotspotHandles())[position as keyof typeof this.gethotspotHandles];
+        await handle.dragAndDrop({x: -20, y: -20});
+    }
+    async createFreehand() {
+        await (await this.collaborateBtn).waitForClickable();
+        await (await this.collaborateBtn).click();
     }
 };
 

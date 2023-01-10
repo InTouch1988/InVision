@@ -9,24 +9,27 @@ describe('Check hotspot resizing', async () => {
         firstCoordinate: {x: 50, y: 50}, 
         secondCoordinate: {x: 100, y: 100}
     };
+    const handlesPosition: string[] = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'];
 
     before(async () => {
+        await browser.maximizeWindow();
         await loginPage.login();
         await screensOverview.openTestFileInConsole();
         await consoleMode.switchToMode('build');
     });
 
-    it('Check hotspot resizing from each corner', async () => {
-        await consoleMode.checkAndDeleteHotspots();
-        await (await consoleMode.projectScreen).waitForDisplayed();
-        await consoleMode.createHotspot(hotspotData);
-        await browser.pause(2000);
-        const size = await consoleMode.hotspots[0].getSize();
-        console.log(await size);
-        const obj = consoleMode.hotspotHandles();
-        const handle = await (await consoleMode.hotspotHandles())['topLeft'];
-        await handle.dragAndDrop({x: -20, y: -20});
-        await browser.pause(2000);
-        
+    handlesPosition.forEach(position => {
+        it(`Check hotspot resizing from ${position} corner`, async () => {
+            await (await consoleMode.projectScreen).waitForDisplayed();
+            await consoleMode.createHotspot(hotspotData);
+            await browser.pause(1000);
+            const initSize = await consoleMode.getHotspotSize();
+            console.log(await initSize);
+            await consoleMode.resizeHotspot(position);
+            await browser.pause(1000);
+            const endtSize = await consoleMode.getHotspotSize();
+            console.log(await endtSize);
+            expect(await endtSize).not.toEqual(await initSize);
+        });
     });
 })
