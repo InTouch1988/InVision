@@ -33,7 +33,7 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/createFreehand.spec.ts'
+        './test/specs/**/APItest.spec.ts'
     ],
     // Patterns to exclude.
     exclude: [
